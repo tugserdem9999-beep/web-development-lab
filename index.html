@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
-<lang="mn">
+<html lang="mn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,21 +24,21 @@
  <section>
  <h2>Хэрэглэгчийн Анкет Бөглөх</h2>
  <p>Доорх формын дагуу мэдээллээ бүрэн, үнэн зөв зааж бөглөнө үү.</p>
-<form action="#" method="POST" enctype="multipart/form-data">
+<form action="#" method="GET" enctype="multipart/form-data">
  <!-- 1-р бүлэг: Хувийн мэдээлэл -->
  <fieldset>
  <legend>Хувийн мэдээлэл</legend>
  <label for="fullname">Овог нэр:</label><br>
- <input type="text" id="fullname" name="fullname" placeholder="И. Болдбаатар" required minlength="2"><br><br>
+ <input type="text" id="fullname" name="fullname" value="Д. Төгс-Эрдэм" placeholder="Д. Төгс-Эрдэм" required minlength="2"><br><br>
  
  <label for="email">Цахим хаяг (Email):</label><br>
- <input type="email" id="email" name="email" placeholder="example@domain.com" required><br><br>
+ <input type="email" id="email" name="email" value="tugserdem9999@gmail.com" placeholder="example@domain.com" required><br><br>
  
  <label for="password">Нууц үг:</label><br>
- <input type="password" id="password" name="password" required minlength="6"><br><br>
+ <input type="password" id="password" name="password" value="Tugsuu2007" required minlength="6"><br><br>
  
  <label for="phone">Утасны дугаар:</label><br>
- <input type="tel" id="phone" name="phone" pattern="[0-9]{8}" placeholder="88112233" required><br><br>
+ <input type="tel" id="phone" name="phone" pattern="[0-9]{8}" value="94231018" placeholder="88112233" required><br><br>
  
  <label for="dob">Төрсөн огноо:</label><br>
  <input type="date" id="dob" name="dob" required><br><br>
@@ -58,7 +57,7 @@
  <label for="degree">Суралцаж буй түвшин:</label><br>
  <select id="degree" name="degree" required>
  <option value="">-- Сонгоно уу --</option>
- <option value="bachelor">Бакалавр</option>
+ <option value="bachelor" selected>Бакалавр</option>
  <option value="master">Магистр</option>
  <option value="doctor">Докторант</option>
  </select><br><br>
@@ -82,6 +81,7 @@
  <button type="submit">Анкет Илгээх</button>
  <button type="reset">Дахин эхлүүлэх</button>
  </form>
+
  </section>
  </article>
  <!-- Сонирхлын жагсаалт -->
@@ -106,16 +106,16 @@
  </thead>
  <tbody>
  <tr>
- <td>Веб зохиомж</td>
+ <td>Mat</td>
+ <td>100</td>
+ </tr>
+ <tr>
+ <td>Physics</td>
  <td>95</td>
  </tr>
  <tr>
- <td>Мэдээллийн сан</td>
- <td>88</td>
- </tr>
- <tr>
- <td>Алгоритм</td>
- <td>92</td>
+ <td>Java</td>
+ <td>90</td>
  </tr>
  </tbody>
  </table>
@@ -127,54 +127,3 @@
  </footer>
 </body>
 </html>
-=======
-<!DOCTYPE html> 
-<html lang="mn"> 
-<head> 
-<meta charset="UTF-8"> 
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-<title>Төгс-Эрдэм - CV</title> 
-</head> 
-<body> 
-
-<!-- Үндсэн гарчиг --> 
-<h1>Нэр: Төгс-Эрдэм</h1> 
-
-<!-- Сургуулийн мэдээлэл --> 
-<p>Сургуулийн мэдээлэл холбооны 2-р курсын оюутан</p> 
-
-<!-- Товч танилцуулга --> 
-<p>Мэдээллийн технологийн чиглэлээр суралцаж буй, програмчлал болон шинэ технологиудыг сонирхон судалдаг оюутан.</p> 
-
-<h2>Эзэмшсэн чадварууд</h2> 
-<!-- Жагсаалт --> 
-<ul> 
-    <li>HTML5 & CSS3 үндэс</li> 
-    <li>Git & GitHub хувилбар удирдлага</li> 
-    <li>Программчлалын С++ хэл</li> 
-    <li>Python</li>
-    <li>Java</li>
-    <li>Linux Ubuntu үйлдлийн систем</li>
-</ul> 
-
-<h2>Хэлний мэдлэг</h2>
-<ul>
-    <li>Англи хэл</li>
-    <li>Солонгос хэл</li>
-</ul>
-
-<h2>Хобби</h2>
-<p>Спортоор хичээллэх дуртай.</p>
-
-<h2>Холбоо барих</h2> 
-<!-- Холбоос --> 
-<p>
-    Утас: 94231018<br>
-    Имэйл: tugserdem9999@gmail.com<br>
-    Миний GitHub профайлтай танилцах: 
-    <a href="https://github.com" target="_blank">GitHub Холбоос</a> 
-</p> 
-
-</body> 
-</html>
->>>>>>> 61aa6294173cfd1839803ca7d231bd07d4b87448
