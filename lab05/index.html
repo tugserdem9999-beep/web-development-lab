@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Сүүтэй – цагаан идээний дэлгүүр | Лаб 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Rubik:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef2f5; --surface:#ffffff; --ink:#14213d; --muted:#4b5a73;
+  --brand:#1f4e79; --accent:#f2a900; --on-brand:#ffffff; --line:#c9d3df;
+  --wf:#dde4ec; --wf-line:#8796ab;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0f1826; --surface:#18253a; --ink:#e8eef6; --muted:#a9b7cb;
+    --brand:#7fb2e5; --accent:#f2b933; --on-brand:#0f1826; --line:#2d3f5a;
+    --wf:#223350; --wf-line:#5f7391;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0f1826; --surface:#18253a; --ink:#e8eef6; --muted:#a9b7cb;
+  --brand:#7fb2e5; --accent:#f2b933; --on-brand:#0f1826; --line:#2d3f5a;
+  --wf:#223350; --wf-line:#5f7391;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Manrope",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:1rem;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:30}
+img,svg{max-width:100%;height:auto}
+h1,h2,h3{font-family:"Rubik","Manrope",system-ui,sans-serif;line-height:1.2;margin:0 0 .5em;overflow-wrap:anywhere}
+h1{font-size:clamp(1.9rem,7vw,3.2rem);font-weight:700}
+h2{font-size:clamp(1.4rem,4.5vw,2rem)}
+h3{font-size:1.05rem;margin-bottom:.25em}
+p{margin:0 0 1em;max-width:62ch}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{width:100%;max-width:1120px;margin-inline:auto;padding-inline:1rem}
+
+/* Header + nav */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:.5rem;min-height:60px}
+.logo{font-family:"Rubik",sans-serif;font-weight:700;font-size:1.25rem;text-decoration:none;color:var(--brand);margin-right:auto}
+.icon-btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;min-width:44px;height:44px;padding:0 .7rem;background:none;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-weight:600}
+.cart-count{background:var(--accent);color:#14213d;border-radius:999px;min-width:1.4rem;padding:0 .4rem;text-align:center;font-size:.85rem;font-weight:700}
+.nav-toggle{flex-direction:column;gap:5px;padding:0 10px;display:inline-flex}
+.nav-toggle span{display:block;width:100%;height:2px;background:var(--ink);transition:transform .2s,opacity .2s}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav{list-style:none;margin:0;padding:0;display:flex;gap:.25rem}
+.nav a{display:block;padding:.6rem .9rem;text-decoration:none;border-radius:8px;font-weight:600}
+.nav a:hover{background:var(--bg)}
+@media (max-width:767px){
+  .nav{display:none;flex-direction:column;position:absolute;left:0;right:0;top:100%;background:var(--surface);border-bottom:1px solid var(--line);padding:.5rem 1rem 1rem}
+  .nav.open{display:flex}
+  .nav a{padding:.9rem .5rem;border-bottom:1px solid var(--line);border-radius:0}
+  .bar{position:relative}
+  .bar .nav-wrap{display:contents}
+}
+@media (min-width:768px){ .nav-toggle{display:none} }
+
+/* Hero */
+.hero{padding-block:2rem}
+.hero .wrap{display:grid;gap:1.5rem;align-items:center}
+.btn{display:inline-block;background:var(--accent);color:#14213d;font-weight:700;text-decoration:none;padding:.8rem 1.3rem;border-radius:10px;border:0;cursor:pointer}
+.cup{width:min(60vw,280px);aspect-ratio:1;margin-inline:auto;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,#f6e7c8 0 38%,#d9b179 39% 52%,var(--brand) 53% 100%);
+  border:6px solid var(--surface);box-shadow:0 0 0 2px var(--line);
+  position:relative;cursor:pointer;touch-action:manipulation;transition:transform .8s cubic-bezier(.3,.7,.3,1)}
+.cup::after{content:"";position:absolute;top:6%;left:50%;width:14%;aspect-ratio:1;margin-left:-7%;border-radius:50%;background:var(--accent)}
+.cup::before{content:"";position:absolute;top:20%;left:50%;width:4px;height:30%;margin-left:-2px;border-radius:2px;background:var(--surface)}
+
+/* Products */
+section{padding-block:2rem}
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.25rem;padding:0;list-style:none}
+.chip{min-height:40px;padding:0 1rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);cursor:pointer;font-weight:600}
+.chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;padding:0;margin:0;list-style:none}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.thumb{display:grid;place-items:center;aspect-ratio:16/9;font-size:3.5rem}
+.card-body{padding:.8rem;display:flex;flex-direction:column;gap:.4rem;flex:1}
+.card-body p{margin:0;font-size:.9rem;color:var(--muted)}
+.card-foot{margin-top:auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem}
+.price{font-weight:700;color:var(--brand)}
+.add{min-height:40px;padding:0 .9rem;border:0;border-radius:8px;background:var(--accent);color:#14213d;font-weight:700;cursor:pointer}
+.empty{color:var(--muted)}
+
+/* About */
+.about{background:var(--surface);border-block:1px solid var(--line)}
+.about .wrap{display:grid;gap:1.5rem}
+.facts{display:grid;gap:.75rem;margin:0}
+.facts div{border-left:4px solid var(--accent);padding-left:.75rem}
+.facts dt{font-weight:700}
+.facts dd{margin:0;color:var(--muted)}
+
+/* Cart drawer */
+.scrim{position:fixed;inset:0;background:rgba(10,20,35,.5);z-index:40;opacity:0;visibility:hidden;transition:opacity .2s}
+.scrim.show{opacity:1;visibility:visible}
+.drawer{position:fixed;z-index:50;left:0;right:0;bottom:0;max-height:85%;background:var(--surface);border-radius:16px 16px 0 0;padding:1rem 1rem calc(1rem + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:.75rem;transform:translateY(100%);visibility:hidden;transition:transform .25s,visibility .25s}
+.drawer.show{transform:none;visibility:visible}
+.drawer-head{display:flex;align-items:center;justify-content:space-between}
+.drawer-head h2{margin:0;font-size:1.3rem}
+.lines{list-style:none;margin:0;padding:0;overflow-y:auto;display:grid;gap:.6rem}
+.line{display:grid;grid-template-columns:1fr auto;gap:.25rem .75rem;align-items:center;border-bottom:1px solid var(--line);padding-bottom:.6rem}
+.line .qty{display:inline-flex;align-items:center;gap:.4rem}
+.qty button{width:36px;height:36px;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer;font-weight:700}
+.total{display:flex;justify-content:space-between;font-weight:700;font-size:1.1rem}
+.notice{min-height:1.4em;margin:0;color:var(--brand);font-weight:600}
+
+/* Wireframe */
+.wf-set{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:flex-start}
+.wf{background:var(--wf);border:2px solid var(--wf-line);border-radius:10px;padding:.6rem;display:grid;gap:.4rem;font-size:.75rem;margin:0}
+.wf b{display:grid;place-items:center;border:1.5px dashed var(--wf-line);border-radius:4px;background:var(--bg);min-height:28px;padding:.15rem .3rem;text-align:center;font-weight:600;overflow-wrap:anywhere}
+.wf .row{display:grid;gap:.4rem;grid-template-columns:repeat(var(--n,1),minmax(0,1fr))}
+.wf .tall{min-height:64px}
+.wf-mobile{width:min(100%,190px)}
+.wf-desktop{flex:1 1 320px;min-width:0}
+.wf-cap{display:block;margin-top:.4rem;color:var(--muted);font-size:.85rem}
+
+.site-footer{padding-block:2rem;color:var(--muted);border-top:1px solid var(--line)}
+.site-footer .wrap{display:grid;gap:.5rem}
+
+/* Tablet ≥768px */
+@media (min-width:768px){
+  .wrap{padding-inline:2rem}
+  .hero{padding-block:3rem}
+  .hero .wrap{grid-template-columns:1.2fr .8fr}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .thumb{aspect-ratio:4/3}
+  .about .wrap{grid-template-columns:1fr 1fr}
+  .site-footer .wrap{grid-template-columns:1fr 1fr}
+  .drawer{left:auto;top:env(safe-area-inset-top,0px);bottom:0;width:380px;max-height:none;border-radius:16px 0 0 16px;transform:translateX(100%)}
+}
+/* Desktop ≥1024px */
+@media (min-width:1024px){
+  .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hero .wrap{gap:4rem}
+  section{padding-block:3.5rem}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="logo" href="#top">Сүүтэй</a>
+    <ul class="nav" id="nav">
+      <li><a href="#products">Бүтээгдэхүүн</a></li>
+      <li><a href="#about">Бидний тухай</a></li>
+      <li><a href="#wireframe">Макет</a></li>
+      <li><a href="#contact">Холбоо барих</a></li>
+    </ul>
+    <button class="icon-btn" id="cart-open" type="button" aria-label="Сагс нээх">🛒 <span class="cart-count" id="cart-count">0</span></button>
+    <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Цэс нээх"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Малчдын шинэ цагаан идээ — онлайнаар захиална</h1>
+        <p>Ааруул, сүү, аарц, шар тос, тараг, өрөм. Малчдаас шууд авсан сүүгээр өдөр бүр шинээр бэлддэг.</p>
+        <a class="btn" href="#products">Бүтээгдэхүүн үзэх</a>
+      </div>
+      <div class="cup" tabindex="0" role="img" aria-label="Сүүний аяга. Хүрэхэд эргэнэ"></div>
+    </div>
+  </div>
+
+  <section id="products">
+    <div class="wrap">
+      <h2>Бүтээгдэхүүн</h2>
+      <ul class="cards" id="cards"></ul>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <div>
+        <h2>Бидний тухай</h2>
+        <p>Бид 2019 оноос хойш орон нутгийн малчдаас сүү, цагаан идээгээ шууд авч, нэг өдрийн дотор хүргэдэг.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Хүргэлт</dt><dd>Улаанбаатар хотод 24 цагийн дотор</dd></div>
+        <div><dt>Цагийн хуваарь</dt><dd>Даваа–Ням, 08:00–21:00</dd></div>
+        <div><dt>Төлбөр</dt><dd>Бэлнээр эсвэл картаар</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="wireframe">
+    <div class="wrap">
+      <h2>Wireframe (эх макет)</h2>
+      <p>Нэг агуулгыг гар утас болон компьютер дээр хэрхэн байрлуулахыг харуулсан бүдүүвч.</p>
+      <div class="wf-set">
+        <figure class="wf wf-mobile" aria-label="Гар утасны wireframe">
+          <b>Лого 🛒 ☰</b>
+          <b class="tall">Hero + товч</b>
+          <b class="tall">Бараа</b><b class="tall">Бараа</b><b class="tall">Бараа</b>
+          <b>Бидний тухай</b>
+          <b>Footer</b>
+          <figcaption class="wf-cap">Mobile: 1 багана, ☰ цэс, сагс доороос гарна</figcaption>
+        </figure>
+        <figure class="wf wf-desktop" aria-label="Компьютерын wireframe">
+          <div class="row" style="--n:6"><b>Лого</b><b>Бараа</b><b>Тухай</b><b>Макет</b><b>Холбоо</b><b>🛒</b></div>
+          <div class="row" style="--n:2"><b class="tall">Hero + товч</b><b class="tall">Зураг</b></div>
+          <div class="row" style="--n:3"><b class="tall">Бараа</b><b class="tall">Бараа</b><b class="tall">Бараа</b></div>
+          <div class="row" style="--n:3"><b class="tall">Бараа</b><b class="tall">Бараа</b><b class="tall">Бараа</b></div>
+          <div class="row" style="--n:2"><b>Бидний тухай</b><b>Мэдээлэл</b></div>
+          <b>Footer</b>
+          <figcaption class="wf-cap">Desktop: 3 багана, сагс баруун талаас гарна</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div><strong>Холбоо барих</strong><br>Сүхбаатарын талбайн ойролцоо, Улаанбаатар</div>
+    <div>Утас: 7000-0000<br>info@suutei.example</div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Сагс" aria-hidden="true">
+  <div class="drawer-head"><h2>Сагс</h2><button class="icon-btn" id="cart-close" type="button" aria-label="Сагс хаах">✕</button></div>
+  <ul class="lines" id="lines"></ul>
+  <div class="total"><span>Нийт</span><span id="total">0₮</span></div>
+  <button class="btn" id="checkout" type="button">Захиалах</button>
+  <p class="notice" id="notice" role="status"></p>
+</aside>
+
+<script>
+(function(){
+  var PRODUCTS=[
+    {id:1,name:'Ааруул',price:24000,desc:'Хатаасан, гэрийн жороор.',icon:'🧀',bg:'#f1dfb8'},
+    {id:2,name:'Сүү',price:3500,desc:'Шинэхэн, малчдаас шууд.',icon:'🥛',bg:'#e5eef7'},
+    {id:3,name:'Аарц',price:20000,desc:'Хөнгөн исгэлэн амттай.',icon:'🥣',bg:'#f7ecc9'},
+    {id:4,name:'Шар тос',price:25000,desc:'Цөцгийнөөс гарган авсан.',icon:'🧈',bg:'#f8e08a'},
+    {id:5,name:'Тараг',price:5000,desc:'Зөөлөн, байгалийн исгэлэнтэй.',icon:'🍶',bg:'#eaf0f4'},
+    {id:6,name:'Өрөм',price:10000,desc:'Өтгөн, цөцгийлөг.',icon:'🍮',bg:'#f2d4c4'}
+  ];
+  var cart={};
+  try{var saved=JSON.parse(localStorage.getItem('suutei-dairy-cart')||'{}'); if(saved&&typeof saved==='object')cart=saved;}catch(e){}
+
+  var $=function(id){return document.getElementById(id)};
+  function money(n){return n.toLocaleString('en-US')+'₮'}
+  function find(id){return PRODUCTS.filter(function(p){return p.id==id})[0]}
+  function save(){try{localStorage.setItem('suutei-dairy-cart',JSON.stringify(cart))}catch(e){}}
+
+  function renderCards(){
+    var list=PRODUCTS;
+    $('cards').innerHTML=list.map(function(p){
+      return '<li class="card"><div class="thumb" style="background:'+p.bg+'" aria-hidden="true">'+p.icon+'</div>'+
+        '<div class="card-body"><h3>'+p.name+'</h3><p>'+p.desc+'</p>'+
+        '<div class="card-foot"><span class="price">'+money(p.price)+'</span>'+
+        '<button class="add" type="button" data-add="'+p.id+'">Сагсанд</button></div></div></li>';
+    }).join('');
+  }
+  function renderCart(){
+    var ids=Object.keys(cart).filter(function(k){return cart[k]>0&&find(k)});
+    var count=0,total=0;
+    $('lines').innerHTML=ids.length?ids.map(function(k){
+      var p=find(k),q=cart[k];count+=q;total+=q*p.price;
+      return '<li class="line"><div><strong>'+p.name+'</strong><br><span class="price">'+money(p.price*q)+'</span></div>'+
+        '<div class="qty"><button type="button" data-dec="'+k+'" aria-label="Хасах">−</button><span>'+q+'</span><button type="button" data-inc="'+k+'" aria-label="Нэмэх">+</button></div></li>';
+    }).join(''):'<li class="empty">Сагс хоосон байна. Бүтээгдэхүүнээс сонгоно уу.</li>';
+    $('cart-count').textContent=count;
+    $('total').textContent=money(total);
+    $('checkout').disabled=!count;
+    save();
+  }
+  function openCart(open){
+    $('drawer').classList.toggle('show',open);
+    $('scrim').classList.toggle('show',open);
+    $('drawer').setAttribute('aria-hidden',!open);
+    if(open)$('notice').textContent='';
+  }
+
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('button'); if(!t)return;
+    if(t.dataset.add){cart[t.dataset.add]=(cart[t.dataset.add]||0)+1;renderCart();}
+    else if(t.dataset.inc){cart[t.dataset.inc]++;renderCart();}
+    else if(t.dataset.dec){cart[t.dataset.dec]=Math.max(0,cart[t.dataset.dec]-1);renderCart();}
+  });
+  $('cart-open').addEventListener('click',function(){openCart(true)});
+  $('cart-close').addEventListener('click',function(){openCart(false)});
+  $('scrim').addEventListener('click',function(){openCart(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')openCart(false)});
+  $('checkout').addEventListener('click',function(){
+    cart={};renderCart();$('notice').textContent='Захиалга бүртгэгдлээ. Бид тантай холбогдоно.';
+  });
+
+  // Нав цэс (mobile)
+  var btn=document.querySelector('.nav-toggle'), nav=$('nav');
+  function setNav(open){
+    nav.classList.toggle('open',open);
+    btn.setAttribute('aria-expanded',open);
+    btn.setAttribute('aria-label',open?'Цэс хаах':'Цэс нээх');
+  }
+  btn.addEventListener('click',function(){setNav(!nav.classList.contains('open'))});
+  nav.addEventListener('click',function(e){if(e.target.tagName==='A')setNav(false)});
+  window.addEventListener('resize',function(){if(window.innerWidth>=768)setNav(false)});
+
+  // Аяга: хүрэхэд эргэнэ
+  var cup=document.querySelector('.cup'),angle=0,busy=false;
+  function spin(){if(busy)return;busy=true;angle+=360;cup.style.transform='rotate('+angle+'deg)';setTimeout(function(){busy=false},800)}
+  cup.addEventListener('pointerenter',spin);
+  cup.addEventListener('click',spin);
+  cup.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();spin()}});
+
+  renderCards();renderCart();
+})();
+</script>
+</body>
+</html>
