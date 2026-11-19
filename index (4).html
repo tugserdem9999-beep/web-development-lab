@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="mn" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Цагаан идээний цомог</title>
+<meta name="description" content="Монгол цагаан идээний зургийн цомог">
+<link rel="stylesheet" href="style.css">
+<noscript><style>#loader{display:none}.card{opacity:1}</style></noscript>
+</head>
+<body>
+<div id="loader" role="status" aria-live="polite"><span class="spinner"></span><span class="sr-only">Ачааллаж байна…</span></div>
+<a class="skip" href="#gallery">Үндсэн хэсэг рүү алгасах</a>
+<header class="top">
+  <a class="logo" href="#" aria-label="Цагаан идээ — нүүр">
+    <svg viewBox="0 0 48 48" width="40" height="40" role="img" aria-labelledby="lt"><title id="lt">Цагаан идээ лого</title><circle cx="24" cy="24" r="22" fill="var(--c-brand)"/><path d="M24 8c6 8 10 13 10 19a10 10 0 0 1-20 0c0-6 4-11 10-19z" fill="var(--c-cream)"/></svg>
+    <span>Цагаан идээ</span>
+  </a>
+  <div class="tools"><button id="cart-btn" type="button" aria-haspopup="dialog">Сагс (<span id="cart-count">0</span>)</button><button id="theme" type="button" aria-pressed="false">Харанхуй горим</button></div>
+</header>
+<main>
+  <h1>Цагаан идээний цомог</h1>
+  <section aria-labelledby="g">
+    <h2 id="g" class="sr-only">Gallery</h2>
+    <ul id="gallery" class="grid">
+      <li class="card" style="--i:0" data-id="1" data-name="Чихэргүй тараг" data-price="8900">
+        <div class="flip" id="flip1">
+          <div class="face front">
+            <div class="media"><img src="img/photo1.jpg" alt="Чихэргүй тараг" width="400" height="400" loading="lazy"><span class="badge">🔥 Эрэлттэй</span></div>
+            <h3>Чихэргүй тараг</h3><p class="price">8,900₮</p>
+          </div>
+          <dl class="face back">
+            <dt>Нэр</dt><dd>Чихэргүй тараг</dd>
+            <dt>Огноо</dt><dd><time datetime="2026-10-14">2026-10-14</time></dd>
+            <dt>Газар</dt><dd>Төв аймаг, Зуунмод</dd>
+          </dl>
+        </div>
+        <div class="actions"><button class="flip-btn" type="button" aria-pressed="false" aria-controls="flip1">Дэлгэрэнгүй</button><button class="add-btn" type="button">Сагсанд нэмэх</button></div>
+      </li>
+      <li class="card" style="--i:1" data-id="2" data-name="Цуглуулга" data-price="14900">
+        <div class="flip" id="flip2">
+          <div class="face front">
+            <div class="media"><img src="img/photo2.jpg" alt="Цуглуулга" width="400" height="400" loading="lazy"><span class="badge">🔥 Эрэлттэй</span></div>
+            <h3>Цуглуулга</h3><p class="price">14,900₮</p>
+          </div>
+          <dl class="face back">
+            <dt>Нэр</dt><dd>Цуглуулга</dd>
+            <dt>Огноо</dt><dd><time datetime="2026-10-20">2026-10-20</time></dd>
+            <dt>Газар</dt><dd>Архангай, Цэнхэр</dd>
+          </dl>
+        </div>
+        <div class="actions"><button class="flip-btn" type="button" aria-pressed="false" aria-controls="flip2">Дэлгэрэнгүй</button><button class="add-btn" type="button">Сагсанд нэмэх</button></div>
+      </li>
+      <li class="card" style="--i:2" data-id="3" data-name="Ээзгий" data-price="12900">
+        <div class="flip" id="flip3">
+          <div class="face front">
+            <div class="media"><img src="img/photo3.jpg" alt="Ээзгий" width="400" height="400" loading="lazy"><span class="badge">🔥 Эрэлттэй</span></div>
+            <h3>Ээзгий</h3><p class="price">12,900₮</p>
+          </div>
+          <dl class="face back">
+            <dt>Нэр</dt><dd>Ээзгий</dd>
+            <dt>Огноо</dt><dd><time datetime="2026-10-22">2026-10-22</time></dd>
+            <dt>Газар</dt><dd>Хөвсгөл, Мөрөн</dd>
+          </dl>
+        </div>
+        <div class="actions"><button class="flip-btn" type="button" aria-pressed="false" aria-controls="flip3">Дэлгэрэнгүй</button><button class="add-btn" type="button">Сагсанд нэмэх</button></div>
+      </li>
+      <li class="card" style="--i:3" data-id="4" data-name="Бяслаг" data-price="12900">
+        <div class="flip" id="flip4">
+          <div class="face front">
+            <div class="media"><img src="img/photo4.jpg" alt="Бяслаг" width="400" height="400" loading="lazy"><span class="badge">🔥 Эрэлттэй</span></div>
+            <h3>Бяслаг</h3><p class="price">12,900₮</p>
+          </div>
+          <dl class="face back">
+            <dt>Нэр</dt><dd>Бяслаг</dd>
+            <dt>Огноо</dt><dd><time datetime="2026-11-02">2026-11-02</time></dd>
+            <dt>Газар</dt><dd>Дорнод, Чойбалсан</dd>
+          </dl>
+        </div>
+        <div class="actions"><button class="flip-btn" type="button" aria-pressed="false" aria-controls="flip4">Дэлгэрэнгүй</button><button class="add-btn" type="button">Сагсанд нэмэх</button></div>
+      </li>
+      <li class="card" style="--i:4" data-id="5" data-name="Тавгийн идээ /Сүүн ааруул 6x5/" data-price="549900">
+        <div class="flip" id="flip5">
+          <div class="face front">
+            <div class="media"><img src="img/photo5.jpg" alt="Тавгийн идээ /Сүүн ааруул 6x5/" width="400" height="400" loading="lazy"><span class="badge">🔥 Эрэлттэй</span></div>
+            <h3>Тавгийн идээ /Сүүн ааруул 6x5/</h3><p class="price">549,900₮</p>
+          </div>
+          <dl class="face back">
+            <dt>Нэр</dt><dd>Тавгийн идээ /Сүүн ааруул 6x5/</dd>
+            <dt>Огноо</dt><dd><time datetime="2026-11-05">2026-11-05</time></dd>
+            <dt>Газар</dt><dd>Улаанбаатар, Сүхбаатар дүүрэг</dd>
+          </dl>
+        </div>
+        <div class="actions"><button class="flip-btn" type="button" aria-pressed="false" aria-controls="flip5">Дэлгэрэнгүй</button><button class="add-btn" type="button">Сагсанд нэмэх</button></div>
+      </li>
+      <li class="card" style="--i:5" data-id="6" data-name="Шар тос" data-price="18900">
+        <div class="flip" id="flip6">
+          <div class="face front">
+            <div class="media"><img src="img/photo6.jpg" alt="Шар тос" width="400" height="400" loading="lazy"><span class="badge">🔥 Эрэлттэй</span></div>
+            <h3>Шар тос</h3><p class="price">18,900₮</p>
+          </div>
+          <dl class="face back">
+            <dt>Нэр</dt><dd>Шар тос</dd>
+            <dt>Огноо</dt><dd><time datetime="2026-11-08">2026-11-08</time></dd>
+            <dt>Газар</dt><dd>Увс, Улаангом</dd>
+          </dl>
+        </div>
+        <div class="actions"><button class="flip-btn" type="button" aria-pressed="false" aria-controls="flip6">Дэлгэрэнгүй</button><button class="add-btn" type="button">Сагсанд нэмэх</button></div>
+      </li>
+    </ul>
+  </section>
+  <section class="media-sec" aria-labelledby="v">
+    <h2 id="v">Бяслаг хийх арга</h2>
+    <video controls preload="metadata" playsinline width="640" poster="img/photo4.jpg">
+      <source src="video/clip.webm" type="video/webm">
+      <source src="video/clip.mp4" type="video/mp4">
+      <track kind="captions" src="video/clip.mn.vtt" srclang="mn" label="Монгол" default>
+      Таны хөтөч видеог дэмжихгүй байна.
+    </video>
+  </section>
+  <section class="media-sec" aria-labelledby="m">
+    <h2 id="m">Дэлгүүрийн байршил</h2>
+    <iframe title="Улаанбаатар хотын газрын зураг" loading="lazy" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=106.85%2C47.89%2C106.97%2C47.94&amp;layer=mapnik"></iframe>
+    <p class="addr">Улаанбаатар хот, Сүхбаатар дүүрэг. <a href="https://www.openstreetmap.org/?mlat=47.9184&amp;mlon=106.9177#map=14/47.9184/106.9177" target="_blank" rel="noopener noreferrer">Том газрын зураг дээр нээх</a></p>
+  </section>
+</main>
+<p id="cart-status" class="sr-only" role="status" aria-live="polite"></p>
+<dialog id="cart" aria-labelledby="cart-h">
+  <h2 id="cart-h">Таны сагс</h2>
+  <ul id="cart-list"></ul>
+  <p class="total">Нийт: <strong id="cart-total">0₮</strong></p>
+  <div class="actions"><button type="button" id="cart-clear">Сагс хоослох</button><button type="button" id="cart-close">Хаах</button></div>
+</dialog>
+<footer>© 2026 Цагаан идээ</footer>
+<script src="script.js"></script>
+</body>
+</html>
